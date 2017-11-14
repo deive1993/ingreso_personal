@@ -6,6 +6,7 @@
 package visual;
 
 import controlador.*;
+import java.awt.Event.*;
 import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class Personal extends JFrame {
     private JButton modificar = new JButton("MODIFICAR");
     private JButton cancelar = new JButton("CANCELAR");
     private JButton limpiar = new JButton("LIMPIAR");
-    private JLabel lblnombre = new JLabel("NOMBRES");
-    private JLabel lblapellido = new JLabel("APELLIDOS");
+    private JLabel lblnombre = new JLabel("NOMBRES : ");
+    private JLabel lblapellido = new JLabel("APELLIDOS: ");
     private JLabel lbldireccion = new JLabel("DIRECCION");
     private JLabel lblcelular = new JLabel("CELULAR");
     private JLabel lbldni = new JLabel("DNI");
@@ -45,8 +46,9 @@ public class Personal extends JFrame {
     private JList<String>listaPersonal = new JList<String>();
     
     private GridLayout contenedor = new GridLayout(5,4);
+    
     private ControladorCancelar controladorCancelar = new ControladorCancelar();
-    private ControladorIngresar controladorIngresar = new ControladorIngresar(txtapellido,txtcelular,txtcelular,txtdireccion,txtdni,txtemail,txtnombre,personaIngresado,listaPersonal);
+    private ControladorRegistrar controladorIngresar = new ControladorRegistrar(txtapellido,txtcelular,txtcelular,txtdireccion,txtdni,txtemail,txtnombre,personaIngresado,listaPersonal);
     private ControladorLimpiar controladorLimpiar = new ControladorLimpiar(txtapellido,txtcelular,txtcelular,txtdireccion,txtdni,txtemail,txtnombre);
     private ControladorModificar controladorModificar = new ControladorModificar();
     private ControladorwindowsPersonal controladorwindowsPersonal = new ControladorwindowsPersonal();
@@ -57,12 +59,15 @@ public class Personal extends JFrame {
         this.agregarComponentes();
         this.setTitle("PERSONAL");
         this.setLocation(300, 300);
-        this.setSize(900, 600);
+        this.setSize(900, 300);
         this.setVisible(true);
+        this.contenedor.setHgap(20);
+        this.contenedor.setVgap(20);
+       
+        this.cancelar.setAlignmentX(TOP_ALIGNMENT);
         this.ingresar.addMouseListener(controladorIngresar);
         this.limpiar.addMouseListener(controladorLimpiar);
         this.addWindowListener((WindowListener) controladorwindowsPersonal);
-    
     }
 
     private void agregarComponentes() {
@@ -85,5 +90,31 @@ public class Personal extends JFrame {
         this.add(limpiar);
         this.add(listaPersonal);
         
+    }
+    
+       void bloquear(){
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+        txtdni.setEnabled(false);
+        txtdireccion.setEnabled(false);
+        txtcelular.setEnabled(false);
+        txtemail.setEnabled(false);
+        ingresar.setEnabled(true);
+        modificar.setEnabled(false);
+        cancelar.setEnabled(false);
+        limpiar.setEnabled(false);
+    }
+    
+    
+    
+    
+         void desbloquear(){
+        txtnombre.setEnabled(true);
+        txtapellido.setEnabled(true);
+        txtdni.setEnabled(true);
+        txtdireccion.setEnabled(true);
+        ingresar.setEnabled(false);
+        modificar.setEnabled(true);
+        cancelar.setEnabled(true);
     }
 }

@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import conexion.Conectar;
+import java.awt.event.ActionEvent.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author USER
  */
-public class ControladorIngresar implements MouseListener{
+public class ControladorRegistrar implements MouseListener{
     
     private JTextField txtnombre;
     private JTextField txtapellido;
@@ -26,7 +28,7 @@ public class ControladorIngresar implements MouseListener{
     private ArrayList<String>personaIngresado;
     private JList<String>listaPersonal;
 
-    public ControladorIngresar(JTextField txtapellido, JTextField txtcelular, JTextField txtcelular0, JTextField txtdireccion, JTextField txtdni, JTextField txtemail, JTextField txtnombre, ArrayList<String> personalIngresado, JList<String> listaPersonal) {
+    public ControladorRegistrar(JTextField txtapellido, JTextField txtcelular, JTextField txtcelular0, JTextField txtdireccion, JTextField txtdni, JTextField txtemail, JTextField txtnombre, ArrayList<String> personalIngresado, JList<String> listaPersonal) {
         this.txtnombre = txtnombre;
         this.txtapellido = txtapellido;
         this.txtdireccion = txtdireccion;
@@ -35,8 +37,11 @@ public class ControladorIngresar implements MouseListener{
         this.txtemail = txtemail;
         this.personaIngresado = personalIngresado;
         this.listaPersonal = listaPersonal;
+        
     }
-
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        txtnombre.transferFocus();
+    }      
     
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -49,10 +54,14 @@ public class ControladorIngresar implements MouseListener{
         
         String[]data = (String[])personaIngresado.toArray(new String[personaIngresado.size()]);
         listaPersonal.setListData(data);
+        
+         Conectar conn = new Conectar();
     }
 
+            
     @Override
     public void mousePressed(MouseEvent e) {
+        
     }
 
     @Override
